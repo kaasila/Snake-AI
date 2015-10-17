@@ -70,7 +70,7 @@ function moveSnake() {
     switch(snake[i].direction) {
       // Moving UP
       case 1:
-        if (snakePiece.y + 1 > height - 1) {
+        if (snakePiece.y + 1 > height - 1 || (i === 0 && isSpaceTaken(snakePiece.x, snakePiece.y + 1))) {
           startGame(width, height);
           return;
         }
@@ -78,7 +78,7 @@ function moveSnake() {
         break;
       // Moving DOWN
       case 2:
-        if (snakePiece.y - 1 < 0) {
+        if (snakePiece.y - 1 < 0 || (i === 0 && isSpaceTaken(snakePiece.x, snakePiece.y - 1))) {
           startGame(width, height);
           return;
         }
@@ -86,7 +86,7 @@ function moveSnake() {
         break;
       // Moving LEFT
       case 3:
-        if (snakePiece.x - 1 < 0) {
+        if (snakePiece.x - 1 < 0 || (i === 0 && isSpaceTaken(snakePiece.x - 1, snakePiece.y))) {
           startGame(width, height);
           return;
         }
@@ -94,7 +94,7 @@ function moveSnake() {
         break;
       // Moving RIGHT
       case 4:
-        if (snakePiece.x + 1 > width - 1) {
+        if (snakePiece.x + 1 > width - 1 || (i === 0 && isSpaceTaken(snakePiece.x + 1, snakePiece.y))) {
           startGame(width, height);
           return;
         }
@@ -105,6 +105,14 @@ function moveSnake() {
   gameBoard[snake[snake.length-1].x][snake[snake.length-1].y] = -1;
   snake = newSnake;
   updateGameBoard();
+}
+
+// Determines if the given (x, y) coordinate can be moved to
+function isSpaceTaken(x, y) {
+  if (gameBoard[x][y] === 0) {
+        console.log("OMG: " + x + "  " + y);
+  }
+  return gameBoard[x][y] === 0;
 }
 
 // Updates the game board model
