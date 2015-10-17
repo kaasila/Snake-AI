@@ -12,7 +12,7 @@
       var context = canvas.getContext("2d");
 
       setInterval(function() {
-        //startGame(20, 20);
+        document.getElementById("score").innerHTML= "Score: " + score;
         context.fillStyle = "black";
         context.fillRect(0, 0, canvas.width, canvas.height);
         moveSnake();
@@ -36,6 +36,9 @@
 <canvas id="board" width="500" height="500">
   Browser not supported.
 </canvas>
+<div id="score">
+  Score:
+</div>
 
 </body>
 </html>
