@@ -39,6 +39,8 @@ function placeFood() {
   var yPos = Math.floor(Math.random() * height);
   if (!containsEntity(xPos, yPos)) {
     gameBoard[xPos][yPos] = 1;
+  } else {
+    placeFood();
   }
 }
 
@@ -109,9 +111,6 @@ function moveSnake() {
 
 // Determines if the given (x, y) coordinate can be moved to
 function isSpaceTaken(x, y) {
-  if (gameBoard[x][y] === 0) {
-        console.log("OMG: " + x + "  " + y);
-  }
   return gameBoard[x][y] === 0;
 }
 
