@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang-"en">
+<head>
+  <meta charset="utf-8" />
+  <title>Snake</title>
+  <script src="SnakeController.js" type="text/javascript"></script>
+  <script>
+    window.onload = function() {
+      startGame(20, 20);
+      var blockSize = 500  / 20;
+      var canvas = document.getElementById("board");
+      var context = canvas.getContext("2d");
+
+      setInterval(function() {
+        //startGame(20, 20);
+        context.fillStyle = "black";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        for(var x = 0; x < width; ++x) {
+          for (var y = 0; y < height; ++y) {
+            if (gameBoard[x][y] === 0) {
+              context.fillStyle = "green";
+              context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+            } else if (gameBoard[x][y] == 1) {
+              context.fillStyle = "white";
+              context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+            }
+          }
+        }
+        moveSnake();
+      }, 200);
+    }
+  </script>
+</head>
+<body>
+
+<canvas id="board" width="500" height="500">
+  Browser not supported.
+</canvas>
+
+</body>
+</html>
